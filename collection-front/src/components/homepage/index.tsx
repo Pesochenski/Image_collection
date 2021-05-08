@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./home.scss";
 import { Link } from "react-router-dom";
 import Arrow from "../../assets/icons/arrow.svg";
@@ -6,7 +6,7 @@ import Arrow from "../../assets/icons/arrow.svg";
 export default function Homepage(): JSX.Element {
   const [back, setBack] = useState<number>(1);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const interval = window.setInterval(() => toMaximum(), 15000);
     return () => clearInterval(interval);
   }, [back]);
@@ -25,39 +25,21 @@ export default function Homepage(): JSX.Element {
       setBack(1);
     }
   }
+  const num = [1, 2, 3, 4, 5];
 
   return (
     <div className="homepage">
-      <div
-        className={
-          back == 1 ? "homepage__tabs homepage__tabs_active" : "homepage__tabs"
-        }
-        id="bg-1"
-      />
-      <div
-        className={
-          back == 2 ? "homepage__tabs homepage__tabs_active" : "homepage__tabs"
-        }
-        id="bg-2"
-      />
-      <div
-        className={
-          back == 3 ? "homepage__tabs homepage__tabs_active" : "homepage__tabs"
-        }
-        id="bg-3"
-      />
-      <div
-        className={
-          back == 4 ? "homepage__tabs homepage__tabs_active" : "homepage__tabs"
-        }
-        id="bg-4"
-      />
-      <div
-        className={
-          back == 5 ? "homepage__tabs homepage__tabs_active" : "homepage__tabs"
-        }
-        id="bg-5"
-      />
+      {num.map((item) => (
+        <div
+          key={item}
+          className={
+            back == item
+              ? "homepage__tabs homepage__tabs_active"
+              : "homepage__tabs"
+          }
+          id={`bg-${item}`}
+        />
+      ))}
       <div className="homepage__tabs homepage__tabs_active" id="darkness" />
 
       <div className="homepage__content">
@@ -82,46 +64,17 @@ export default function Homepage(): JSX.Element {
           <img src={Arrow} className="homepage__arrow" id="left" />
         </button>
         <div className="homepage__points">
-          <div
-            className={
-              back == 1
-                ? "homepage__point homepage__point_active"
-                : "homepage__point"
-            }
-            onClick={() => setBack(1)}
-          />
-          <div
-            className={
-              back == 2
-                ? "homepage__point homepage__point_active"
-                : "homepage__point"
-            }
-            onClick={() => setBack(2)}
-          />
-          <div
-            className={
-              back == 3
-                ? "homepage__point homepage__point_active"
-                : "homepage__point"
-            }
-            onClick={() => setBack(3)}
-          />
-          <div
-            className={
-              back == 4
-                ? "homepage__point homepage__point_active"
-                : "homepage__point"
-            }
-            onClick={() => setBack(4)}
-          />
-          <div
-            className={
-              back == 5
-                ? "homepage__point homepage__point_active"
-                : "homepage__point"
-            }
-            onClick={() => setBack(5)}
-          />
+          {num.map((item) => (
+            <div
+              key={item}
+              className={
+                back == item
+                  ? "homepage__point homepage__point_active"
+                  : "homepage__point"
+              }
+              onClick={() => setBack(item)}
+            />
+          ))}
         </div>
         <button className="homepage__btn" onClick={toMaximum}>
           <img src={Arrow} className="homepage__arrow" id="right" />

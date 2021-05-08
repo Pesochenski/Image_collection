@@ -1,29 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./collection.scss";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import { Elem } from "../../interfaces/fetchInterfaces";
+import { useDispatch } from "react-redux";
+import { fetchImg } from "../../store/fetchData";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 export default function Collection(): JSX.Element {
-  const [err, setErr] = useState<boolean>(false);
-  const [loaded, setLoaded] = useState<boolean>(false);
-  const [img, setImg] = useState<Elem[]>([]);
+  const { images, error, loaded } = useTypedSelector((state) => state.images);
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetchData();
+    dispatch(fetchImg());
   }, []);
-
-  const fetchData = () => {
-    axios
-      .get("http://localhost:5000/images")
-      .then((res) => {
-        setImg(res.data);
-        setLoaded(true);
-      })
-      .catch(() => {
-        setErr(true);
-        setLoaded(true);
-      });
-  };
 
   return (
     <div className="collection-page">
@@ -38,7 +25,7 @@ export default function Collection(): JSX.Element {
         <div className="collection-page__images">
           {!loaded ? (
             <p className="collection-page__loading">Loading...</p>
-          ) : err ? (
+          ) : error ? (
             <div className="collection-page__err">
               <p>Sorry, the connection is lost</p>
               <button
@@ -49,7 +36,7 @@ export default function Collection(): JSX.Element {
               </button>
             </div>
           ) : (
-            img.map((item) => (
+            images.map((item) => (
               <Link
                 to={{
                   pathname: `/collection/${item.id}`,
