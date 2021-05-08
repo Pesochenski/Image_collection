@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+
+%fontBasics {
+  color: white;
+  letter-spacing: 0.05em;
+  font-family: "Montserrat";
+}
+
+.burger {
+  position: absolute;
+  margin-top: 35px;
+  margin-left: 30px;
+  outline: none;
+  border: none;
+  background: none;
+  display: none;
+
+  &__item {
+    background-color: white;
+    border-radius: 2px;
+    height: 4px;
+    margin-top: 5px;
+    transition: 0.5s;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &-1 {
+      width: 30px;
+    }
+    &-2 {
+      width: 40px;
+    }
+    &-3 {
+      width: 20px;
+    }
+  }
+}
+
+.navbar {
+  position: fixed;
+  z-index: 1;
+  margin: 40px auto auto 80px;
+  display: flex;
+
+  &__link {
+    @extend %fontBasics;
+    margin-left: 40px;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration-line: none;
+    transition: 0.3s;
+    position: relative;
+    font: {
+      size: 16px;
+      weight: 400;
+    }
+
+    &::after {
+      content: "";
+      width: 0;
+      height: 2px;
+      background-color: white;
+      position: absolute;
+      transition: 0.4s;
+      left: 0;
+      bottom: 0;
+      top: 30px;
+    }
+    &:hover:after {
+      width: 25px;
+    }
+    &:hover {
+      color: white;
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &_active {
+      color: white;
+      position: relative;
+
+      &::after {
+        content: "";
+        width: 25px;
+        height: 2px;
+        border-radius: 1px;
+        background-color: white;
+        position: absolute;
+        transition: 0.4s;
+        left: 0;
+        bottom: 0;
+        top: 30px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .navbar {
+    position: absolute;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .burger {
+    display: block;
+    z-index: 1;
+  }
+
+  .navbar {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    margin: 0;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    left: -250px;
+    transition: 0.4s;
+
+    &_active {
+      transform: translateX(250px);
+    }
+
+    &__link {
+      margin-top: 40px;
+      margin-left: 30px;
+      &:first-child {
+        margin-top: 120px;
+        margin-left: 30px;
+      }
+    }
+  }
+}
