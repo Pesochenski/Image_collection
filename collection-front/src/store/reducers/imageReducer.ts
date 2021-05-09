@@ -16,7 +16,7 @@ export function imageReducer(
 ): ImageState {
   switch (action.type) {
     case ImageActionTypes.FETCH_IMAGES:
-      return { images: [], loaded: true, error: false };
+      return { images: [], loaded: false, error: false };
     case ImageActionTypes.FETCH_IMAGES_SUCCESS:
       return { images: action.payload, loaded: true, error: false };
     case ImageActionTypes.FETCH_IMAGES_ERROR:

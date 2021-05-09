@@ -12,7 +12,7 @@ export function fetchImg() {
       const res = await axios.get("http://localhost:5000/images");
       dispatch({
         type: ImageActionTypes.FETCH_IMAGES_SUCCESS,
-        payload: res.data,
+        payload: res.data.sort((a: any, b: any) => a.id - b.id),
       });
     } catch (err) {
       dispatch({ type: ImageActionTypes.FETCH_IMAGES_ERROR });
