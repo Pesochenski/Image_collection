@@ -4,38 +4,50 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchImg } from "../../store/fetchData";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { Elem } from "../../interfaces/fetchInterfaces";
+import { sortImg } from "../../store/sortData";
+import { ImageSortActionTypes } from "../../interfaces/sortInterfaces";
 
 export default function Collection(): JSX.Element {
   const { images, error, loaded } = useTypedSelector((state) => state.images);
+  const { sorted, sortedImages } = useTypedSelector(
+    (state) => state.sortedImages
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchImg());
   }, []);
 
-  const [sorted, setSorted] = React.useState<boolean>(false);
-  const [sortedImages, setSortedImages] = React.useState<Elem[]>([]);
-  function sortImages(): void {
-    const sortImages = JSON.parse(JSON.stringify(images));
-    const completeSortedImages = sortImages
-      .map((item: Elem) => ({
-        id: item.id,
-        link: item.link,
-        title: item.title,
-        date: new Date(item.date),
-      }))
-      .sort((a: any, b: any) => b.date - a.date);
-    // console.log(completeSortedImages);
-    setSorted(true);
-    setSortedImages(completeSortedImages);
-  }
-  function sortClick(): void {
-    if (!sorted) {
-      sortImages();
-    } else {
-      setSorted(false);
+  function reduxSortClick() {
+    if (sorted == true) {
+      dispatch({ type: ImageSortActionTypes.SORTED_IMAGES });
+    } else if (sorted == false) {
+      dispatch(sortImg(images));
     }
   }
+
+  //  const [sorted, setSorted] = React.useState<boolean>(false);
+  //  const [sortedImages, setSortedImages] = React.useState<Elem[]>([]);
+  //  function sortImages(): void {
+  //    const sortImages = JSON.parse(JSON.stringify(images));
+  //    const completeSortedImages = sortImages
+  //      .map((item: Elem) => ({
+  //        id: item.id,
+  //        link: item.link,
+  //        title: item.title,
+  //        date: new Date(item.date),
+  //      }))
+  //      .sort((a: any, b: any) => b.date - a.date);
+  //    // console.log(completeSortedImages);
+  //    setSorted(true);
+  //    setSortedImages(completeSortedImages);
+  //  }
+  //  function sortClick(): void {
+  //    if (!sorted) {
+  //      sortImages();
+  //    } else {
+  //      setSorted(false);
+  //    }
+  //  }
 
   return (
     <div className="collection-page">
@@ -48,7 +60,8 @@ export default function Collection(): JSX.Element {
                 ? "collection-page__button collection-page__button_active"
                 : "collection-page__button"
             }
-            onClick={sortClick}
+            // onClick={sortClick}
+            onClick={reduxSortClick}
           >
             New to old
           </button>
