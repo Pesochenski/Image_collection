@@ -2,18 +2,21 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const imageSchema = require("./schema");
-const app = express();
+require("dotenv").config();
 
-const PORT = 5000;
+const app = express();
+const {
+  SERVER_PORT,
+  DB_USERNAME,
+  DB_PASSWORD,
+  DB_BASENAME,
+  DB_CLUSTER,
+} = process.env;
 
 app.use(cors());
-app.listen(PORT, () => console.log("Server works"));
+app.listen(SERVER_PORT, () => console.log("Server works"));
 
-const USERNAME = "Pesochenski";
-const PASSWORD = "AdminPesochenski";
-const DATABASE = "imageCollection";
-
-const url = `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.bhhnz.mongodb.net/${DATABASE}?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_CLUSTER}.bhhnz.mongodb.net/${DB_BASENAME}?retryWrites=true&w=majority`;
 
 mongoose
   .connect(url, {
