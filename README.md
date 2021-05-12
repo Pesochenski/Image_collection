@@ -1,5 +1,8 @@
 ## SPA Image collection
 
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org)
+[![Node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/)
+
 ### Description
 
 There is the small Single Page Application with beautiful appearance, created by myself in Figma, and some functional, like filter, axios with redux, and others. It was maded for presentation my skills with code for today, working with state management and writing types with TypeScript.
