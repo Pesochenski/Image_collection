@@ -1,0 +1,260 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+
+@keyframes textAnim {
+  from {
+    margin-left: -4px;
+    opacity: 0;
+  }
+  to {
+    margin-left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes btnAnim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tabsAnim {
+  from {
+    opacity: 0;
+    margin-bottom: 48px;
+  }
+  to {
+    opacity: 1;
+    margin-bottom: 53px;
+  }
+}
+
+%fontBasics {
+  font-family: 'Montserrat';
+  color: white;
+  letter-spacing: 0.05em;
+}
+
+%textAnimation {
+  animation-duration: 0.5s;
+  animation-name: textAnim;
+}
+
+.homepage {
+  position: relative;
+  display: flex;
+  height: 100vh;
+
+  &__content {
+    @extend %fontBasics;
+    position: absolute;
+    margin-top: 280px;
+    margin-left: 190px;
+  }
+  &__upper-title {
+    @extend %textAnimation;
+    font: {
+      size: 18px;
+      weight: 400;
+    }
+  }
+  &__title {
+    @extend %textAnimation;
+    font: {
+      size: 36px;
+      weight: 700;
+    }
+    text-transform: uppercase;
+  }
+  &__text {
+    @extend %textAnimation;
+    margin-top: 35px;
+    font: {
+      size: 14px;
+      weight: 300;
+    }
+    &-span {
+      font: {
+        size: 14px;
+        weight: 600;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration-line: none;
+  }
+
+  &__CTA {
+    @extend %fontBasics;
+    animation-name: btnAnim;
+    animation-duration: 0.5s;
+    margin-top: 100px;
+    width: 235px;
+    height: 60px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    outline: none;
+    background: none;
+    cursor: pointer;
+    font: {
+      size: 16px;
+      weight: 400;
+    }
+    transition: 0.4s;
+    &:hover {
+      background-color: #ffffff;
+      color: black;
+    }
+  }
+
+  &__tabs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 2s;
+    opacity: 0;
+
+    &_active {
+      opacity: 1;
+    }
+  }
+
+  &__tabs-btns {
+    animation-name: tabsAnim;
+    animation-duration: 0.5s;
+    display: flex;
+    width: 340px;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto auto 53px auto;
+  }
+  &__arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  &__btn {
+    outline: none;
+    border: none;
+    background: none;
+    opacity: 0.25;
+    transition: 0.3s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__points {
+    display: flex;
+    width: 88px;
+    height: 12px;
+    align-items: flex-end;
+  }
+  &__point {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.25);
+    margin-left: 12px;
+    transition: 0.5s;
+    &:first-child {
+      margin-left: 0;
+    }
+    &_active {
+      height: 12px;
+      background-color: rgba(255, 255, 255, 1);
+      box-shadow: 0px 0px 10px #ffffff;
+    }
+  }
+}
+
+#bg-1 {
+  background-image: url("../../assets/img/1.jpg");
+}
+#bg-2 {
+  background-image: url("../../assets/img/2.jpg");
+}
+#bg-3 {
+  background-image: url("../../assets/img/3.jpg");
+}
+#bg-4 {
+  background-image: url("../../assets/img/4.jpg");
+}
+#bg-5 {
+  background-image: url("../../assets/img/5.jpg");
+}
+
+#darkness {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+#left {
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 1399px) {
+  .homepage {
+    &__content {
+      margin-top: 150px;
+    }
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .homepage {
+    &__content {
+      margin-left: 80px;
+      width: 500px;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .homepage {
+    width: 100vw;
+
+    &__tabs-btns {
+      width: 300px;
+    }
+
+    &__content {
+      margin-top: 190px;
+      margin-left: 30px;
+      margin-right: auto;
+      width: 315px;
+    }
+
+    &__upper-title {
+      font-size: 16px;
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__text {
+      margin-top: 30px;
+      font-size: 12px;
+      line-height: 17px;
+      &-span {
+        font-size: 12px;
+      }
+    }
+
+    &__CTA {
+      margin-top: 80px;
+    }
+  }
+}

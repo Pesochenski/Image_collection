@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+
+@keyframes mainDesktopAnim {
+  from {
+    margin-left: 75px;
+    opacity: 0;
+  }
+  to {
+    margin-left: 80px;
+    opacity: 1;
+  }
+}
+@keyframes mainMobileAnim {
+  from {
+    margin-left: 25px;
+    opacity: 0;
+  }
+  to {
+    margin-left: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes opacityAnim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+%opacityAnimation {
+  animation-name: opacityAnim;
+  animation-duration: 0.5s;
+}
+%fontBasics {
+  color: white;
+  letter-spacing: 0.05em;
+  font-family: "Montserrat";
+}
+
+.item-page {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../../assets/img/coll-bg.jpg");
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+
+  &__content {
+    margin-left: 80px;
+    overflow: auto;
+    margin-top: 152px;
+    display: flex;
+    padding-bottom: 40px;
+    animation-name: mainDesktopAnim;
+    animation-duration: 0.5s;
+  }
+
+  &__main {
+    margin: 0 50px auto 0;
+  }
+
+  &__title {
+    @extend %fontBasics;
+    font: {
+      size: 24px;
+      weight: 400;
+    }
+  }
+
+  &__image {
+    margin-top: 20px;
+    width: 250px;
+    height: 550px;
+    border-radius: 25px;
+  }
+
+  &__info {
+    @extend %opacityAnimation;
+    margin-top: 43px;
+  }
+
+  &__text {
+    @extend %fontBasics;
+    width: 500px;
+    margin-bottom: 100px;
+    font: {
+      size: 14px;
+      weight: 300;
+    }
+  }
+
+  &__go-back {
+    @extend %fontBasics;
+    width: 175px;
+    height: 50px;
+    border-radius: 30px;
+    background: none;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: 0.3s;
+    font: {
+      size: 16px;
+      weight: 300;
+    }
+    &:hover {
+      border: 1px solid rgba(255, 255, 255, 1);
+    }
+    &:focus {
+      background-color: white;
+      color: black;
+    }
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .item-page {
+    &__text {
+      width: 250px;
+    }
+  }
+}
+
+@media screen and (max-width: 661px) {
+  .item-page {
+    &__text {
+      width: 180px;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .item-page {
+    display: flex;
+
+    &__content {
+      margin-top: 80px;
+      margin-left: 30px;
+      flex-direction: column;
+      animation-name: mainMobileAnim;
+    }
+
+    &__info {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__text {
+      margin-bottom: 30px;
+    }
+  }
+}
