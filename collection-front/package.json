@@ -2,7 +2,7 @@
   "name": "collection-img",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://pesochenski.github.io/Image_collection/",
+  "homepage": "https://pesochenski.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
