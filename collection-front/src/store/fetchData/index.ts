@@ -16,7 +16,10 @@ export function fetchImg() {
   ): Promise<Returned | undefined> => {
     try {
       dispatch({ type: ImageActionTypes.FETCH_IMAGES });
-      const res = await axios.get("http://localhost:5000/images");
+      // const res = await axios.get("http://localhost:5000/images");
+      const res = await axios.get(
+        "https://intense-cliffs-94475.herokuapp.com/images"
+      );
       dispatch({
         type: ImageActionTypes.FETCH_IMAGES_SUCCESS,
         payload: res.data.sort((a: any, b: any) => a.id - b.id),

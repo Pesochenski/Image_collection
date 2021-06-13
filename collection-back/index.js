@@ -13,6 +13,9 @@ const {
   DB_CLUSTER,
 } = process.env;
 
+// for successful heroku deploy write to listen method process.env.PORT
+// if not works, add db link like a var to heroku and process.env.DB to connect
+
 app.use(cors());
 app.listen(SERVER_PORT, () => console.log("Server works"));
 
